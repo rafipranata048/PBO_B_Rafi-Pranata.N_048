@@ -1,8 +1,9 @@
 import java.util.Scanner;
-
 public class Tugas {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Admin admin = new Admin("admin", "000","Admin048", "password048");
+        Mahasiswa mahasiswa = new Mahasiswa("Rafi Pranata", "202410370110048");
 
         System.out.println("Pilih Login:");
         System.out.println("1. Admin");
@@ -12,42 +13,38 @@ public class Tugas {
         int pilihan = scanner.nextInt();
         scanner.nextLine();
 
-        if (pilihan == 1) {
+        switch (pilihan) {
+            case 1:
+                System.out.print("Masukkan username: ");
+                String username = scanner.nextLine();
+                System.out.print("Masukkan password: ");
+                String password = scanner.nextLine();
 
-            System.out.print("Masukkan username: ");
-            String username = scanner.nextLine();
-            System.out.print("Masukkan password: ");
-            String password = scanner.nextLine();
+                if (admin.login(username, password)) {
+                    admin.displayInfo();
+                } else {
+                    System.out.println("Login gagal, Username atau password salah.");
+                }
+                break;
 
-            String validUsername = "Admin048";
-            String validPassword = "password048";
+            case 2:
+                System.out.print("Masukkan Nama: ");
+                String nama = scanner.nextLine();
+                System.out.print("Masukkan NIM: ");
+                String nim = scanner.nextLine();
 
-            if (username.equals(validUsername) && password.equals(validPassword)) {
-                System.out.println("Login Admin berhasil!");
-            } else {
-                System.out.println("Login gagal! Username atau password salah.");
-            }
-        } else if (pilihan == 2) {
+                if (mahasiswa.login(nama, nim)) {
+                    mahasiswa.displayInfo();
+                } else {
+                    System.out.println("Login gagal, Nama atau NIM salah.");
+                }
+                break;
 
-            System.out.print("Masukkan Nama: ");
-            String nama = scanner.nextLine();
-            System.out.print("Masukkan NIM: ");
-            String nim = scanner.nextLine();
-
-            String validnama = "Rafi Pranata";
-            String validNIM = "202410370110048";
-
-            if ( nama.equals(validnama) && nim.equals(validNIM)) {
-                System.out.println("Login Mahasiswa berhasil!");
-                System.out.println("Nama: " + nama);
-                System.out.println("NIM: " + nim);
-            } else {
-                System.out.println("Login gagal! Nama atau NIM salah.");
-            }
-        } else {
-            System.out.println("Pilihan tidak valid.");
+            default:
+                System.out.println("Pilihan tidak valid");
         }
 
-        scanner.close();
+        scanner.close();//berfungsi untuk menghemat resource spt memori
     }
 }
+

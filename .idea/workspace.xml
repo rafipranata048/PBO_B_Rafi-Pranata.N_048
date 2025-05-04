@@ -19,12 +19,12 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="07723a0e-7127-4258-b32f-25e83612b2fe" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/rafipranata048/PBO_B_RafiPranata.N_048.git",
-    "accountId": "07723a0e-7127-4258-b32f-25e83612b2fe"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rafipranata048/PBO_B_RafiPranata.N_048.git&quot;,
+    &quot;accountId&quot;: &quot;07723a0e-7127-4258-b32f-25e83612b2fe&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -37,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "<unknown>",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/PBO_B_Rafi Pranata.N_048",
