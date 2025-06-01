@@ -1,64 +1,86 @@
 package com.praktikum.main;
 
-import com.praktikum.users.Admin;
-import com.praktikum.users.Mahasiswa;
-import com.praktikum.users.User;
+import com.praktikum.Data.Item;
+import com.praktikum.users.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Tugas {
+public class  Tugas {
+    public static List<User> userList = new ArrayList<>();
+    public static List<Item> reportedItems = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        initializeUsers();
 
-        System.out.println("Pilih Login:");
-        System.out.println("1. Admin");
-        System.out.println("2. Mahasiswa");
-        System.out.print("Masukkan pilihan: ");
+        while (true) {
+            System.out.println("Pilih Login");
+            System.out.println("1. Admin");
+            System.out.println("2. Mahasiswa");
+            System.out.println("0. Keluar");
+            System.out.print("Masukkan pilihan: ");
 
-        int pilihan = scanner.nextInt();
-        scanner.nextLine();
+            try {
 
-        User user = null;
-        String nama, nim, password;
-
-        switch (pilihan) {
-            case 1:
-                System.out.print("Masukkan username Admin: ");
-                String inputUsername = scanner.nextLine();
-                System.out.print("Masukkan password Admin: ");
-                String inputPassword = scanner.nextLine();
-
-                Admin admin = new Admin("admin", "000", "Admin048", "password048");
-
-                if (admin.login(inputUsername, inputPassword)) {
-                    admin.displayInfo();
-                    admin.displayAppMenu();
-                } else {
-                    System.out.println("Login gagal, Username atau password salah.");
+                int pilihan = scanner.nextInt();
+                scanner.nextLine();
+                switch (pilihan) {
+                    case 1:
+                        loginAdmin(scanner);
+                        break;
+                    case 2:
+                        loginMahasiswa(scanner);
+                        break;
+                    case 0:
+                        System.out.println("Keluar");
+                        return;
+                    default:
+                        System.out.println("Pilihan tidak valid.");
+                        break;
                 }
-                break;
-
-
-            case 2:
-                System.out.print("Masukkan Nama Mahasiswa: ");
-                nama = scanner.nextLine();
-                System.out.print("Masukkan NIM Mahasiswa: ");
-                nim= scanner.nextLine();
-
-                user = new Mahasiswa("rafi", "202410370110048");
-                if (user.login(nama, nim)) {
-                    user.displayInfo();
-                    user.displayAppMenu();
-                } else {
-                    System.out.println("Login gagal, Nama atau NIM salah.");
-                }
-                break;
-
-            default:
-                System.out.println("Pilihan tidak valid");
-                break;
+            } catch (Exception e) {
+                System.out.println("Input harus berupa angka!");
+                scanner.nextLine();
+            }
         }
+    }
 
-        scanner.close();
+    public static void initializeUsers() {
+        userList.add(new Admin("Admin", "000", "admin", "admin048"));
+        userList.add(new Mahasiswa("Rafi", "202410370110048"));
+    }
+
+    public static void loginAdmin(Scanner scanner) {
+        System.out.print("Username Admin: ");
+        String user = scanner.nextLine();
+        System.out.print("Password Admin: ");
+        String pass = scanner.nextLine();
+
+        for (User u : userList) {
+            if (u instanceof Admin && u.login(user, pass)) {
+                u.displayInfo();
+                u.displayAppMenu();
+                return;
+            }
+        }
+        System.out.println("Login gagal.");
+    }
+
+    public static void loginMahasiswa(Scanner scanner) {
+        System.out.print("Nama Mahasiswa: ");
+        String nama = scanner.nextLine();
+        System.out.print("NIM Mahasiswa: ");
+        String nim = scanner.nextLine();
+
+        for (User u : userList) {
+            if (u instanceof Mahasiswa && u.login(nama, nim)) {
+                u.displayInfo();
+                u.displayAppMenu();
+                return;
+            }
+        }
+        System.out.println("Login gagal.");
     }
 }
-
